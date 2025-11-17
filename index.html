@@ -3,74 +3,147 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Demo Website Sederhana</title>
+    <title>Menu Interaktif</title>
 
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f2f2f2;
+            font-family: 'Segoe UI', sans-serif;
+            background: #e8eef7;
+            margin: 0;
+            padding: 0;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 40px;
+            height: 100vh;
         }
 
-        .card {
-            background: white;
-            padding: 25px 35px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            max-width: 450px;
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: center;
         }
 
-        button {
-            padding: 12px 20px;
-            margin-top: 15px;
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .menu button {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 16px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
             background: #007bff;
             color: white;
-            font-size: 16px;
-            cursor: pointer;
         }
 
-        button:hover {
-            background: #0057c2;
+        .menu button:hover {
+            background: #005fcc;
+            transform: translateY(-3px);
         }
 
-        #output {
-            margin-top: 20px;
-            font-weight: bold;
-            font-size: 18px;
-            color: #333;
+        .content {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f1f6ff;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .close-btn {
+            margin-top: 15px;
+            background: #ff5252 !important;
+        }
+
+        .close-btn:hover {
+            background: #d63d3d !important;
         }
     </style>
 </head>
+
 <body>
+    <div class="container">
+        <h2>Menu Interaktif</h2>
 
-    <div class="card">
-        <h2>Selamat Datang di Website Demo!</h2>
-        <p>Klik tombol di bawah ini untuk menampilkan pesan acak.</p>
+        <div class="menu">
+            <button onclick="openContent('fitur1')">✨ Fitur 1 – Pesan Penyemangat</button>
+            <button onclick="openContent('fitur2')">🎨 Fitur 2 – Generator Warna</button>
+            <button onclick="openContent('fitur3')">💡 Fitur 3 – Ide Acak</button>
+        </div>
 
-        <button onclick="showMessage()">Tampilkan Pesan</button>
-        <div id="output"></div>
+        <!-- Konten Fitur -->
+        <div id="fitur1" class="content">
+            <h3>Pesan Penyemangat</h3>
+            <p id="msg"></p>
+            <button onclick="generateMessage()">Dapatkan Pesan</button>
+            <button class="close-btn" onclick="closeContent()">Tutup</button>
+        </div>
+
+        <div id="fitur2" class="content">
+            <h3>Generator Warna</h3>
+            <div id="color-box" 
+                 style="width:100%;height:120px;border-radius:12px;background:#007bff;margin-bottom:15px;">
+            </div>
+            <button onclick="generateColor()">Buat Warna Baru</button>
+            <button class="close-btn" onclick="closeContent()">Tutup</button>
+        </div>
+
+        <div id="fitur3" class="content">
+            <h3>Ide Acak</h3>
+            <p id="idea"></p>
+            <button onclick="generateIdea()">Dapatkan Ide</button>
+            <button class="close-btn" onclick="closeContent()">Tutup</button>
+        </div>
     </div>
 
     <script>
+        function openContent(id){
+            document.querySelectorAll('.content').forEach(c => c.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function closeContent(){
+            document.querySelectorAll('.content').forEach(c => c.style.display = 'none');
+        }
+
         const messages = [
-            "Semangat! Hari ini akan menjadi hari yang hebat!",
-            "Jangan lupa minum air ✨",
             "Kamu luar biasa, teruskan!",
-            "Ide hebat datang dari keberanian mencoba.",
-            "Tetap tersenyum 😊"
+            "Percayalah pada proses 😊",
+            "Setiap usaha ada hasilnya.",
+            "Tetap semangat! Kamu bisa.",
+            "Ambil nafas, semuanya akan baik-baik saja."
         ];
 
-        function showMessage() {
+        function generateMessage(){
             const random = Math.floor(Math.random() * messages.length);
-            document.getElementById("output").innerText = messages[random];
+            document.getElementById("msg").innerText = messages[random];
+        }
+
+        function generateColor(){
+            const randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+            document.getElementById("color-box").style.background = randomColor;
+        }
+
+        const ideas = [
+            "Buat proyek kecil dalam 10 menit.",
+            "Coba tantangan kreatif baru.",
+            "Bayangkan produk baru dan gambarkan.",
+            "Tulis 3 hal yang kamu syukuri.",
+            "Coba hal baru hari ini, sekecil apa pun."
+        ];
+
+        function generateIdea(){
+            const random = Math.floor(Math.random() * ideas.length);
+            document.getElementById("idea").innerText = ideas[random];
         }
     </script>
-
 </body>
 </html>
