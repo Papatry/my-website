@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Website Sederhana</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px 35px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 450px;
+            text-align: center;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0057c2;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Selamat Datang di Website Demo!</h2>
+        <p>Klik tombol di bawah ini untuk menampilkan pesan acak.</p>
+
+        <button onclick="showMessage()">Tampilkan Pesan</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        const messages = [
+            "Semangat! Hari ini akan menjadi hari yang hebat!",
+            "Jangan lupa minum air ✨",
+            "Kamu luar biasa, teruskan!",
+            "Ide hebat datang dari keberanian mencoba.",
+            "Tetap tersenyum 😊"
+        ];
+
+        function showMessage() {
+            const random = Math.floor(Math.random() * messages.length);
+            document.getElementById("output").innerText = messages[random];
+        }
+    </script>
+
+</body>
+</html>
